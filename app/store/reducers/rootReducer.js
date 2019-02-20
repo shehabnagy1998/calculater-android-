@@ -1,13 +1,33 @@
 const initState = {
-    screen: '',
-    resault: ''
+    screen: '0',
+    resault: '0',
+    opr: ''
 }
 
 const rootReducer = (state = initState, action) => {
-    const newState = { ...state };
+
     switch (action.type) {
+
+        case 'CHANGE_RESAULT_ASYNC':
+            return {
+                ...state,
+                resault: action.val
+            }
+
+        case 'CHANGE_SCREEN_ASYNC':
+            return {
+                ...state,
+                screen: action.val
+            }
+
+        case 'CHANGE_OPR_ASYNC':
+            return {
+                ...state,
+                opr: action.val
+            }
+
         default:
-            return newState
+            return state
     }
 }
 

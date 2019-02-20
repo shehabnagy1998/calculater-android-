@@ -1,4 +1,4 @@
-package com.helloworld;
+package com.calculator;
 
 import android.app.Application;
 

@@ -1,21 +1,32 @@
 import React, { Component } from 'react'
-import { StyleSheet, Text, View } from 'react-native'
+import { StyleSheet, TextInput, View, ScrollView } from 'react-native'
+import { connect } from 'react-redux'
 
-export default class Display extends Component {
+class Display extends Component {
 
     render() {
+        const { screen, resault } = this.props;
         return (
             <View style={styles.dispaly_container}>
                 <View style={styles.screen}>
-                    <Text style={styles.screen_text}>22+2</Text>
+                    <TextInput editable={false} multiline={false} maxLength={12} style={styles.screen_TextInput}>{screen}</TextInput>
                 </View>
                 <View style={styles.resault}>
-                    <Text style={styles.resault_text}>22+2</Text>
+                    <TextInput editable={false} multiline={false} style={styles.resault_TextInput}>{resault}</TextInput>
                 </View>
             </View>
         )
     }
 }
+
+const mapStateToProps = (state, ownProps) => {
+    return {
+        screen: state.screen,
+        resault: state.resault,
+    }
+}
+
+export default connect(mapStateToProps)(Display)
 
 const styles = StyleSheet.create({
     dispaly_container: {
@@ -23,26 +34,24 @@ const styles = StyleSheet.create({
         backgroundColor: '#fff'
     },
     screen: {
-        flex: 2,
+        flex: 1,
         flexDirection: 'row',
         justifyContent: 'flex-end',
         alignItems: 'center',
-        padding: 20,
-        // backgroundColor: '#f00'
+        paddingHorizontal: 25,
     },
     resault: {
         flex: 1,
         flexDirection: 'row',
         justifyContent: 'flex-end',
         alignItems: 'center',
-        padding: 20,
-        // backgroundColor: '#0f0'
+        paddingHorizontal: 25,
     },
-    screen_text: {
+    screen_TextInput: {
         color: '#000',
         fontSize: 35,
     },
-    resault_text: {
+    resault_TextInput: {
         color: '#999',
         fontSize: 25,
     }
